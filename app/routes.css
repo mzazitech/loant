@@ -1,0 +1,62 @@
+.route-page {
+  min-height: 100vh;
+  background: var(--soft);
+}
+
+.route-hero {
+  padding: 58px 0 28px;
+}
+
+.route-hero h1 {
+  max-width: 860px;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+}
+
+.route-card {
+  max-width: 980px;
+  margin: 0 auto 70px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.route-card.narrow {
+  max-width: 620px;
+}
+
+.route-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.route-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+.route-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.route-list li {
+  padding: 14px;
+  border-radius: 8px;
+  background: #f4f8f7;
+}
+
+.auth-provider-card {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-provider-root,
+.auth-provider-inner {
+  width: 100%;
+}
