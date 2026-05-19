@@ -1,0 +1,10 @@
+.env
+.env.local
+.env.*.local
+.next/
+node_modules/
+.npm-cache/
+next-dev.log
+next-dev-error.log
+*.log
+zeneka-loan-project.zip

@@ -51,6 +51,7 @@
   background: #f4f8f7;
 }
 
+.auth-card,
 .auth-provider-card {
   display: flex;
   justify-content: center;
@@ -59,4 +60,46 @@
 .auth-provider-root,
 .auth-provider-inner {
   width: 100%;
+}
+
+.custom-auth-form {
+  width: 100%;
+}
+
+.auth-heading {
+  padding-bottom: 10px;
+}
+
+.auth-heading span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--mint-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.auth-heading h2 {
+  margin-bottom: 8px;
+}
+
+.auth-heading p,
+.auth-switch {
+  margin: 0;
+  color: var(--muted);
+}
+
+.auth-switch a {
+  color: var(--mint-dark);
+  font-weight: 900;
+}
+
+.auth-error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #ffede9;
+  color: #a53e2d;
+  font-weight: 800;
 }
