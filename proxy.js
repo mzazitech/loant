@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher([
@@ -9,11 +10,24 @@ const isProtectedRoute = createRouteMatcher([
   "/api/paystack(.*)"
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
+const hasAuthKeys = Boolean(
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+  process.env.CLERK_SECRET_KEY
+);
+
+const authProxy = clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
     await auth.protect();
   }
 });
+
+export default function proxy(req, event) {
+  if (!hasAuthKeys) {
+    return NextResponse.next();
+  }
+
+  return authProxy(req, event);
+}
 
 export const config = {
   matcher: [

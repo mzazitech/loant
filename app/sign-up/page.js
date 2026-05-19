@@ -6,6 +6,8 @@ export const metadata = {
 };
 
 export default function SignUpIndexPage() {
+  const authReady = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+
   return (
     <main className="route-page">
       <Header />
@@ -17,7 +19,15 @@ export default function SignUpIndexPage() {
       </section>
 
       <section className="route-card narrow auth-card">
-        <SignUpForm />
+        {authReady ? (
+          <SignUpForm />
+        ) : (
+          <div className="auth-config-notice">
+            <span>Configuration needed</span>
+            <h2>Registration is almost ready</h2>
+            <p>Add your authentication keys in the hosting environment variables, then redeploy Zeneka Loan.</p>
+          </div>
+        )}
       </section>
     </main>
   );
