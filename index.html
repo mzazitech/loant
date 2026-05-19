@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Zeneka Loan is a modern digital lending platform for quick loan applications, repayment planning, and transparent loan tracking.">
+    <title>Zeneka Loan</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="Zeneka Loan home">
+        <span class="brand-mark" aria-hidden="true">Z</span>
+        <span>
+          <strong>Zeneka Loan</strong>
+          <small>Smart lending</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#account">Account</a>
+        <a href="#membership">Membership</a>
+        <a href="#apply">Apply</a>
+        <a href="#repayments">Repayments</a>
+        <a href="#support">Support</a>
+      </nav>
+
+      <a class="topbar-action" href="#account">Join first</a>
+    </header>
+
+    <main>
+      <section class="shell app-hero" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">Digital credit built for everyday growth</p>
+          <h1>Zeneka Loan keeps borrowing clear, fast, and responsible.</h1>
+          <p class="hero-lede">
+            Register, activate membership with a deposit from KES 250, preview repayments, and apply within a loan limit that grows with your deposit.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#account">Create account</a>
+            <a class="button ghost" href="#calculator">Calculate repayment</a>
+          </div>
+
+          <dl class="trust-strip" aria-label="Platform highlights">
+            <div>
+              <dt>KES 250</dt>
+              <dd>Minimum deposit</dd>
+            </div>
+            <div>
+              <dt>5x</dt>
+              <dd>Deposit-based limit</dd>
+            </div>
+            <div>
+              <dt>Secure</dt>
+              <dd>Account access</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="phone-preview" aria-label="Zeneka Loan mobile dashboard preview">
+          <div class="phone-top">
+            <span></span>
+            <strong>Zeneka</strong>
+            <span></span>
+          </div>
+          <div class="balance-card">
+            <small>Active loan limit</small>
+            <strong id="offerAmount">KES 85,000</strong>
+            <span>Limit increases as membership deposit grows</span>
+          </div>
+          <div class="progress-block">
+            <div class="progress-head">
+              <span>Eligibility</span>
+              <strong id="eligibilityScore">82%</strong>
+            </div>
+            <div class="meter"><span id="eligibilityMeter"></span></div>
+          </div>
+          <div class="mini-list">
+            <article>
+              <span class="dot green"></span>
+              <div>
+                <strong>Account verified</strong>
+                <small>Register or sign in before applying</small>
+              </div>
+            </article>
+            <article>
+              <span class="dot yellow"></span>
+              <div>
+                <strong>Member deposit</strong>
+                <small>Minimum activation is KES 250</small>
+              </div>
+            </article>
+            <article>
+              <span class="dot blue"></span>
+              <div>
+                <strong>Loan limit</strong>
+                <small>Higher deposit unlocks higher access</small>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell product-grid" aria-label="Loan platform tools">
+        <article class="feature-panel">
+          <span class="panel-icon">01</span>
+          <h2>Register first</h2>
+          <p>Members create an account, complete detailed onboarding, and sign in before any loan request is accepted.</p>
+        </article>
+        <article class="feature-panel">
+          <span class="panel-icon">02</span>
+          <h2>Activate membership</h2>
+          <p>A deposit of at least KES 250 activates the account. Higher deposits increase the available loan limit.</p>
+        </article>
+        <article class="feature-panel">
+          <span class="panel-icon">03</span>
+          <h2>Apply within limit</h2>
+          <p>Loan requests are checked against deposit-based limits, income, source of funds, and affordability signals.</p>
+        </article>
+      </section>
+
+      <section class="auth-section" id="account">
+        <div class="shell auth-layout">
+          <aside class="auth-copy">
+            <p class="eyebrow">Account required</p>
+            <h2>Members must register or sign in before applying.</h2>
+            <p>Zeneka Loan uses secure account access behind the scenes. The customer sees a simple branded sign-in and registration experience.</p>
+
+            <div class="member-summary">
+              <span>Account status</span>
+              <strong id="accountStatus">Not signed in</strong>
+              <small id="accountHint">Create an account or sign in to continue.</small>
+            </div>
+          </aside>
+
+          <div class="auth-panel">
+            <div class="auth-tabs" role="tablist" aria-label="Account access">
+              <button class="auth-tab active" id="showRegister" type="button">Register</button>
+              <button class="auth-tab" id="showLogin" type="button">Login</button>
+            </div>
+
+            <form id="registerForm" class="loan-form auth-form">
+              <div class="form-section wide">
+                <h3>Personal information</h3>
+              </div>
+              <div class="field-group">
+                <label for="registerName">Full legal name</label>
+                <input id="registerName" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field-group">
+                <label for="registerEmail">Email address</label>
+                <input id="registerEmail" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field-group">
+                <label for="registerPhone">Phone number</label>
+                <input id="registerPhone" name="phone" type="tel" autocomplete="tel" required>
+              </div>
+              <div class="field-group">
+                <label for="nationalId">National ID number</label>
+                <input id="nationalId" name="nationalId" type="text" required>
+              </div>
+              <div class="field-group">
+                <label for="dateOfBirth">Date of birth</label>
+                <input id="dateOfBirth" name="dateOfBirth" type="date" required>
+              </div>
+              <div class="field-group">
+                <label for="maritalStatus">Marital status</label>
+                <select id="maritalStatus" name="maritalStatus" required>
+                  <option value="">Choose status</option>
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Separated</option>
+                  <option>Widowed</option>
+                </select>
+              </div>
+              <div class="field-group wide">
+                <label for="address">Residential address</label>
+                <input id="address" name="address" type="text" autocomplete="street-address" required>
+              </div>
+
+              <div class="form-section wide">
+                <h3>Income and employment</h3>
+              </div>
+              <div class="field-group">
+                <label for="employmentStatus">Employment status</label>
+                <select id="employmentStatus" name="employmentStatus" required>
+                  <option value="">Choose status</option>
+                  <option>Employed full-time</option>
+                  <option>Employed part-time</option>
+                  <option>Self-employed</option>
+                  <option>Business owner</option>
+                  <option>Contract worker</option>
+                  <option>Student</option>
+                  <option>Unemployed</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="sourceOfIncome">Main source of income</label>
+                <select id="sourceOfIncome" name="sourceOfIncome" required>
+                  <option value="">Choose source</option>
+                  <option>Salary</option>
+                  <option>Business revenue</option>
+                  <option>Farming</option>
+                  <option>Freelance work</option>
+                  <option>Rental income</option>
+                  <option>Remittances</option>
+                  <option>Commission</option>
+                  <option>Pension</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="employer">Employer or business name</label>
+                <input id="employer" name="employer" type="text" required>
+              </div>
+              <div class="field-group">
+                <label for="workDuration">Time at work or business</label>
+                <select id="workDuration" name="workDuration" required>
+                  <option value="">Choose duration</option>
+                  <option>Less than 6 months</option>
+                  <option>6 to 12 months</option>
+                  <option>1 to 2 years</option>
+                  <option>2 to 5 years</option>
+                  <option>More than 5 years</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="monthlyIncome">Average monthly income</label>
+                <input id="monthlyIncome" name="monthlyIncome" type="number" min="0" step="500" required>
+              </div>
+              <div class="field-group">
+                <label for="monthlyExpenses">Average monthly expenses</label>
+                <input id="monthlyExpenses" name="monthlyExpenses" type="number" min="0" step="500" required>
+              </div>
+              <div class="field-group">
+                <label for="otherLoans">Existing loan payments</label>
+                <input id="otherLoans" name="otherLoans" type="number" min="0" step="500" value="0" required>
+              </div>
+              <div class="field-group">
+                <label for="incomeFrequency">Income frequency</label>
+                <select id="incomeFrequency" name="incomeFrequency" required>
+                  <option value="">Choose frequency</option>
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                  <option>Bi-weekly</option>
+                  <option>Monthly</option>
+                  <option>Irregular</option>
+                </select>
+              </div>
+
+              <div class="form-section wide">
+                <h3>References and security</h3>
+              </div>
+              <div class="field-group">
+                <label for="nextOfKin">Next of kin name</label>
+                <input id="nextOfKin" name="nextOfKin" type="text" required>
+              </div>
+              <div class="field-group">
+                <label for="nextOfKinPhone">Next of kin phone</label>
+                <input id="nextOfKinPhone" name="nextOfKinPhone" type="tel" required>
+              </div>
+              <div class="field-group">
+                <label for="referenceName">Reference name</label>
+                <input id="referenceName" name="referenceName" type="text" required>
+              </div>
+              <div class="field-group">
+                <label for="referencePhone">Reference phone</label>
+                <input id="referencePhone" name="referencePhone" type="tel" required>
+              </div>
+              <div class="field-group">
+                <label for="password">Create password</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+              </div>
+              <div class="field-group">
+                <label for="confirmPassword">Confirm password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+              </div>
+              <div class="field-group wide">
+                <label for="registrationNotes">Anything else we should know?</label>
+                <textarea id="registrationNotes" name="registrationNotes" rows="3"></textarea>
+              </div>
+              <label class="consent wide">
+                <input name="profileConsent" type="checkbox" required>
+                <span>I confirm these details are true and I consent to identity, income, and affordability checks.</span>
+              </label>
+              <button class="button primary wide" type="submit">Create member account</button>
+            </form>
+
+            <form id="loginForm" class="loan-form auth-form hidden">
+              <div class="field-group wide">
+                <label for="loginEmail">Email address</label>
+                <input id="loginEmail" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field-group wide">
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+              </div>
+              <button class="button primary wide" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell membership-section" id="membership">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Membership deposit</p>
+            <h2>Activate your account before applying.</h2>
+          </div>
+          <span class="status-pill" id="membershipPill">Inactive</span>
+        </div>
+
+        <div class="membership-grid">
+          <form id="depositForm" class="tool-panel deposit-panel">
+            <div class="field-group">
+              <label for="depositAmount">Deposit amount</label>
+              <input id="depositAmount" name="depositAmount" type="number" min="250" step="50" value="250" required>
+            </div>
+            <div class="deposit-actions">
+              <button class="button primary" type="submit">Pay with Paystack</button>
+              <button class="button subtle" id="quickDeposit" type="button">Use KES 1,000</button>
+            </div>
+            <p class="deposit-note">Minimum activation deposit is KES 250. Your estimated loan limit is calculated as five times your active deposit.</p>
+          </form>
+
+          <div class="limit-card">
+            <span>Active deposit</span>
+            <strong id="activeDeposit">KES 0</strong>
+            <span>Estimated loan limit</span>
+            <strong id="activeLoanLimit">KES 0</strong>
+            <small id="depositHint">Activate membership to unlock applications.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" id="apply">
+        <div class="shell workspace-layout">
+          <aside class="side-panel">
+            <p class="eyebrow">Loan workspace</p>
+            <h2>Apply after account and deposit activation.</h2>
+            <p>Use the controls to model a loan. The application button unlocks when the member is signed in and has deposited at least KES 250.</p>
+
+            <div class="score-card">
+              <span>Current decision signal</span>
+              <strong id="decisionSignal">Good fit</strong>
+              <small id="decisionNote">Stable income and a moderate loan amount improve approval chances.</small>
+            </div>
+          </aside>
+
+          <div class="tool-grid">
+            <section class="tool-panel" id="calculator" aria-labelledby="calculatorTitle">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Calculator</p>
+                  <h2 id="calculatorTitle">Estimate repayment</h2>
+                </div>
+                <span class="status-pill">Live quote</span>
+              </div>
+
+              <div class="range-row">
+                <label for="amount">Loan amount</label>
+                <output id="amountOutput" for="amount">KES 50,000</output>
+                <input id="amount" type="range" min="5000" max="250000" step="5000" value="50000">
+              </div>
+
+              <div class="range-row">
+                <label for="term">Repayment term</label>
+                <output id="termOutput" for="term">9 months</output>
+                <input id="term" type="range" min="1" max="24" step="1" value="9">
+              </div>
+
+              <div class="range-row">
+                <label for="rate">Monthly interest rate</label>
+                <output id="rateOutput" for="rate">2.8%</output>
+                <input id="rate" type="range" min="1" max="8" step="0.1" value="2.8">
+              </div>
+
+              <div class="quote-grid" aria-label="Loan quote summary">
+                <div>
+                  <span>Monthly payment</span>
+                  <strong id="monthlyPayment">KES 0</strong>
+                </div>
+                <div>
+                  <span>Total interest</span>
+                  <strong id="totalInterest">KES 0</strong>
+                </div>
+                <div>
+                  <span>Total repayment</span>
+                  <strong id="totalRepayment">KES 0</strong>
+                </div>
+                <div>
+                  <span>First due date</span>
+                  <strong id="firstDueDate">--</strong>
+                </div>
+              </div>
+            </section>
+
+            <section class="tool-panel application-panel" aria-labelledby="applicationTitle">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Application</p>
+                  <h2 id="applicationTitle">Loan request</h2>
+                </div>
+                <span class="status-pill" id="applyGate">Locked</span>
+              </div>
+
+              <form id="loanForm" class="loan-form">
+                <div class="field-group wide">
+                  <label for="applicantName">Applicant</label>
+                  <input id="applicantName" name="applicantName" type="text" readonly placeholder="Register or login first">
+                </div>
+                <div class="field-group">
+                  <label for="income">Confirmed monthly income</label>
+                  <input id="income" name="income" type="number" min="0" step="1000" placeholder="85000" required>
+                </div>
+                <div class="field-group">
+                  <label for="requestedDate">Preferred disbursement date</label>
+                  <input id="requestedDate" name="requestedDate" type="date" required>
+                </div>
+                <div class="field-group">
+                  <label for="purpose">Loan purpose</label>
+                  <select id="purpose" name="purpose" required>
+                    <option value="">Choose purpose</option>
+                    <option>Business stock</option>
+                    <option>School fees</option>
+                    <option>Emergency expense</option>
+                    <option>Asset purchase</option>
+                    <option>Working capital</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label for="repaymentSource">Repayment source</label>
+                  <select id="repaymentSource" name="repaymentSource" required>
+                    <option value="">Choose source</option>
+                    <option>Salary</option>
+                    <option>Business cash flow</option>
+                    <option>Farm produce sales</option>
+                    <option>Contract income</option>
+                    <option>Other verified income</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label for="paymentChannel">Preferred payment channel</label>
+                  <select id="paymentChannel" name="paymentChannel" required>
+                    <option value="">Choose channel</option>
+                    <option>Mobile money</option>
+                    <option>Bank transfer</option>
+                    <option>Card payment</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label for="collateral">Collateral or guarantor</label>
+                  <select id="collateral" name="collateral" required>
+                    <option value="">Choose option</option>
+                    <option>No collateral</option>
+                    <option>Guarantor available</option>
+                    <option>Business asset</option>
+                    <option>Household asset</option>
+                  </select>
+                </div>
+
+                <div class="field-group wide">
+                  <label for="notes">Extra notes</label>
+                  <textarea id="notes" name="notes" rows="3" placeholder="Add any helpful details for review"></textarea>
+                </div>
+
+                <label class="consent wide">
+                  <input id="consent" type="checkbox" required>
+                  <span>I confirm the customer has consented to affordability checks and loan communication.</span>
+                </label>
+
+                <button class="button primary wide" id="submitLoan" type="submit">Submit application</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell records-section" id="repayments">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Loan operations</p>
+            <h2>Applications and repayment preview</h2>
+          </div>
+          <button class="button subtle" id="clearRecords" type="button">Clear records</button>
+        </div>
+
+        <div class="records-layout">
+          <div class="table-wrap">
+            <table>
+              <caption>Submitted loan applications</caption>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Term</th>
+                  <th>Risk</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="applicationRows"></tbody>
+            </table>
+          </div>
+
+          <aside class="repayment-card">
+            <h3>Repayment schedule</h3>
+            <p>Preview the first four installments for the current quote.</p>
+            <ol id="scheduleList"></ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="shell support-section" id="support">
+        <div>
+          <p class="eyebrow">Trust and support</p>
+          <h2>Built with controls a lender needs before launch.</h2>
+        </div>
+        <div class="support-grid">
+          <article>
+            <h3>Transparent pricing</h3>
+            <p>Rates, totals, and due dates are visible before a customer submits an application.</p>
+          </article>
+          <article>
+            <h3>Affordability first</h3>
+            <p>Risk tiering uses income-to-payment ratio so high-burden loans are flagged early.</p>
+          </article>
+          <article>
+            <h3>Next integrations</h3>
+            <p>Ready to connect to identity verification, payment collection, credit scoring, and secure authentication.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <div class="shell footer-inner">
+        <span>Zeneka Loan</span>
+        <span>Responsible digital credit platform</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
