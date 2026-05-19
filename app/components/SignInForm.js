@@ -13,7 +13,10 @@ export default function SignInForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    if (!isLoaded) return;
+    if (!isLoaded || !signIn) {
+      setError("Secure login is still loading. Please wait a moment and try again.");
+      return;
+    }
 
     setIsSubmitting(true);
     setError("");
@@ -34,7 +37,7 @@ export default function SignInForm() {
 
       setError("We need one more verification step before login can finish.");
     } catch (caughtError) {
-      setError(caughtError?.errors?.[0]?.message || "Login failed. Please check your details and try again.");
+      setError(getAuthError(caughtError, "Login failed. Please check your details and try again."));
     } finally {
       setIsSubmitting(false);
     }
@@ -60,7 +63,7 @@ export default function SignInForm() {
 
       {error ? <p className="auth-error wide">{error}</p> : null}
 
-      <button className="button primary wide" type="submit" disabled={isSubmitting || !isLoaded}>
+      <button className="button primary wide" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Logging in..." : "Login"}
       </button>
 
@@ -69,4 +72,9 @@ export default function SignInForm() {
       </p>
     </form>
   );
+}
+
+function getAuthError(caughtError, fallback) {
+  const message = caughtError?.errors?.[0]?.message || fallback;
+  return message.replaceAll("Clerk", "secure access").replaceAll("clerk", "secure access");
 }

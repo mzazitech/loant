@@ -14,7 +14,10 @@ export default function SignUpForm() {
 
   async function handleCreateAccount(event) {
     event.preventDefault();
-    if (!isLoaded) return;
+    if (!isLoaded || !signUp) {
+      setError("Secure registration is still loading. Please wait a moment and try again.");
+      return;
+    }
 
     setIsSubmitting(true);
     setError("");
@@ -34,7 +37,7 @@ export default function SignUpForm() {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setPendingVerification(true);
     } catch (caughtError) {
-      setError(caughtError?.errors?.[0]?.message || "Account creation failed. Please check your details and try again.");
+      setError(getAuthError(caughtError, "Account creation failed. Please check your details and try again."));
     } finally {
       setIsSubmitting(false);
     }
@@ -42,7 +45,10 @@ export default function SignUpForm() {
 
   async function handleVerifyEmail(event) {
     event.preventDefault();
-    if (!isLoaded) return;
+    if (!isLoaded || !signUp) {
+      setError("Secure verification is still loading. Please wait a moment and try again.");
+      return;
+    }
 
     setIsSubmitting(true);
     setError("");
@@ -62,7 +68,7 @@ export default function SignUpForm() {
 
       setError("Verification is not complete yet. Please check the code and try again.");
     } catch (caughtError) {
-      setError(caughtError?.errors?.[0]?.message || "Verification failed. Please check the code and try again.");
+      setError(getAuthError(caughtError, "Verification failed. Please check the code and try again."));
     } finally {
       setIsSubmitting(false);
     }
@@ -84,7 +90,7 @@ export default function SignUpForm() {
 
         {error ? <p className="auth-error wide">{error}</p> : null}
 
-        <button className="button primary wide" type="submit" disabled={isSubmitting || !isLoaded}>
+        <button className="button primary wide" type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Verifying..." : "Verify and continue"}
         </button>
       </form>
@@ -116,7 +122,7 @@ export default function SignUpForm() {
 
       {error ? <p className="auth-error wide">{error}</p> : null}
 
-      <button className="button primary wide" type="submit" disabled={isSubmitting || !isLoaded}>
+      <button className="button primary wide" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Creating account..." : "Create member account"}
       </button>
 
@@ -125,4 +131,9 @@ export default function SignUpForm() {
       </p>
     </form>
   );
+}
+
+function getAuthError(caughtError, fallback) {
+  const message = caughtError?.errors?.[0]?.message || fallback;
+  return message.replaceAll("Clerk", "secure access").replaceAll("clerk", "secure access");
 }
